@@ -25,7 +25,7 @@ class BasketsController < ApplicationController
 	end
 
 	def update
-		 @basket.update
+		 @basket.update(params_basket)
 		 redirect_to basket_path(@basket)
 	end
 
