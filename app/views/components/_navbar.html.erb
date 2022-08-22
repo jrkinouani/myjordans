@@ -11,6 +11,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <%# if user_signed_in? %>
+          <li class="nav-item active">
+              <%= link_to "add new basket", new_basket_path, class: "nav-link" %>
+            </li>
             <li class="nav-item active">
               <%= link_to "Sign in", "#", class: "nav-link" %>
             </li>

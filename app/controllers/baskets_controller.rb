@@ -25,11 +25,8 @@ class BasketsController < ApplicationController
 	end
 
 	def update
-		if @basket.update
-			redirect_to basket_path(@basket)
-		else
-			render "edit"
-		end	
+		 @basket.update
+		 redirect_to basket_path(@basket)
 	end
 
 	def destroy
