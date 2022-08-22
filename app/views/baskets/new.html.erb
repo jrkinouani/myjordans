@@ -1,0 +1,9 @@
+<h1>page new basket</h1>
+
+<%= simple_form_for @basket do || %>
+	<%= f.input :name %>
+	<%= f.input :description %>
+	<%= f.input :size %>
+	<%= f.input :price_per_day %>
+	<%= f.submit %>
+<% end%>
