@@ -1,6 +1,25 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container">
+    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
+    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+  </div>
+</div>
 
+<div class="row">
+  <% @baskets.each do |card| %>
+    <div class="col-3">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.sneakers.fr/wp-content/uploads/2022/06/xair-jordan-1-chicago-reimagined-1.jpg.pagespeed.ic.MbG6UaTFxC.jpg" alt="" class="wp-image-176136 lazyloaded" data-srcset="https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1.jpg 1140w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-600x600.jpg 600w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-380x380.jpg 380w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-768x768.jpg 768w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-485x485.jpg 485w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-120x120.jpg 120w" data-sizes="(max-width: 1140px) 100vw, 1140px" data-pagespeed-url-hash="2705102243" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" src="https://www.sneakers.fr/wp-content/uploads/2022/06/xair-jordan-1-chicago-reimagined-1.jpg.pagespeed.ic.MbG6UaTFxC.jpg" sizes="(max-width: 1140px) 100vw, 1140px" srcset="https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1.jpg 1140w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-600x600.jpg 600w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-380x380.jpg 380w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-768x768.jpg 768w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-485x485.jpg 485w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-120x120.jpg 120w)">
+        Jordan 1
+      </div>
+    </div>
+  <%end%>
+</div>
 
-<h2> hello  <%= current_user.first_name %>  ! </h2>
-<%= current_user.last_name %>
+  <%# <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/lunch.jpg)">
+    Lunch
+  </div>
+
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/dinner.jpg)">
+    Dinner
+  </div> %>
