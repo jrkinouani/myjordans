@@ -5,9 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts "delete db"
+Basket.destroy_all
+User.destroy_all
 
-
-# User.create!(first_name: "charles", last_name: "Martel", email: "charles@gmail.com", password: '123456')
+user = User.create!(first_name: "charles", last_name: "Martel", email: "charles@gmail.com", password: '123456')
 
 require "json"
 require "open-uri"
@@ -31,7 +33,9 @@ loop do
             description: sneaker['description'],
             size: rand(38..45),
             price_per_day: sneaker['price'] / 10,
-            image: "https://sold-out.io#{sneaker['main_picture']['url']}"
+            image: "https://sold-out.io#{sneaker['main_picture']['url']}",
+            user_id: user.id
         })
     end
 end
+puts "db created"

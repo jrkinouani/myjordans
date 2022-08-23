@@ -1,5 +1,5 @@
 class Basket < ApplicationRecord
-	belongs_to :users
+	belongs_to :user
 	def self.search(search)
      where("name LIKE ?", "%#{search}%")
 
