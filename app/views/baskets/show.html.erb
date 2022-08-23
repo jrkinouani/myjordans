@@ -3,7 +3,7 @@
   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
   <div class="card-trip-infos">
     <div>
-      <h2><%= @basket.name%> - Size : <%= @basket.size%> -	Price :<%= @basket. price_per_day %>€/day</h2>
+      <h2><%= @basket.name%> - Size : <%= @basket.size%> -	Price :<%= @basket.price_per_day %>€/day</h2>
       <p>Description : <%= @basket.description%></p>
       <h2></h2>
     </div>
@@ -13,10 +13,77 @@
   <div class="d-flex justify-content-center">
     <%= link_to "edit my jordan", edit_basket_path(@basket), class: "btn btn-ghost me-3" %>
     <%= link_to "Delete",basket_path(@basket) , class: "btn btn-danger me-3" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <%= link_to "Back all jordans", baskets_path, class: "btn btn-gradient" %>
+    <%= link_to "Back all jordans", baskets_path, class: "btn btn-gradient me-3" %>
+    <button type="button" class="btn btn-success" id="book-this-jordan">Book this Jordan</button>
   </div>
+  <form id="calendar" class="justify-content-center mt-4">
+    <input type="date" id="start-date" name="start-date" value="2022-01-01">
+    <input type="date" id="end-date" name="end-date" value="2022-01-01">
+    <button type="submit" id="submit-dates">Submit</button>
+  </form>
 </div>
-  
-
 </div>
+<script>
+let isCalendarOpen = false;
 
+function toggleCalendar() {
+  if (!isCalendarOpen) {
+    document.getElementById("calendar").style.display = "none";
+    isCalendarOpen = true;
+  } else {
+    document.getElementById("calendar").style.display = "flex";
+    isCalendarOpen = false;
+  }
+}
+
+window.onload = function () {
+  toggleCalendar();
+  document
+    .querySelector("#book-this-jordan")
+    .addEventListener("click", function () {
+      toggleCalendar();
+    });
+
+  document.querySelector("#calendar").addEventListener("submit", function (e) {
+    e.preventDefault();
+    let startDate = new Date(
+      document.querySelector("#start-date").value
+    )
+    let endDate = new Date(
+      document.querySelector("#end-date").value
+    )
+    if (startDate >= endDate) return alert("Start date must be before end date");
+    
+    const days = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+    <%# return alert(days) %>
+    startDate = document.querySelector("#start-date").value.split("-");
+    endDate = document.querySelector("#end-date").value.split("-");
+    fetch("/bookings/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        booking: {
+          user_id: "<%= current_user.id %>",
+          basket_id: "<%= @basket.id %>",
+          "start_date(1i)": startDate[0],
+          "start_date(2i)": startDate[1],
+          "start_date(3i)": startDate[2],
+          "end_date(1i)": endDate[0],
+          "end_date(2i)": endDate[1],
+          "end_date(3i)": endDate[2],
+          total_price: days * <%= @basket.price_per_day %>,
+          status: "Processing",
+        },
+        commit: "Create Booking",
+      }),
+    }).then((response) => {
+      if (response.status == 200) return (window.location.href = "/bookings");
+      alert("Something went wrong");
+    });
+  });
+};
+
+</script>
