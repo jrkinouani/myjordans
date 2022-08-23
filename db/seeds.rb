@@ -7,4 +7,31 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-User.create!(first_name: "charles", last_name: "Martel", email: "charles@gmail.com", password: '123456')
+# User.create!(first_name: "charles", last_name: "Martel", email: "charles@gmail.com", password: '123456')
+
+require "json"
+require "open-uri"
+
+url = "https://sold-out.io/api/sneakers?search=jordan"
+sneakers_serialized = URI.open(url).read
+sneakers = JSON.parse(sneakers_serialized)
+count = 0
+
+loop do
+    sneakers.each do |sneaker|
+        if count > 50 then
+            exit
+        end
+        if sneaker['main_picture']['url'].include?("data:image") then
+            next
+        end
+        count += 1
+        Basket.create!({
+            name: sneaker['model'],
+            description: sneaker['description'],
+            size: rand(38..45),
+            price_per_day: sneaker['price'] / 10,
+            image: "https://sold-out.io#{sneaker['main_picture']['url']}"
+        })
+    end
+end
