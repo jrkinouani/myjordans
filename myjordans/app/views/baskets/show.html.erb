@@ -1,9 +1,0 @@
-<h2>page show</h2>
-<h2><%= @basket.name%>	</h2>
-<p>Description : <%= @basket.description%></p>
-<h3>My size : <%= @basket.size%>	</h3>
-<h3>My price :<%= @basket.price_per_day %> €/day</h3>
-<%= link_to "edit my shoe", edit_basket_path(@basket) %>
-<%= link_to "Delete",basket_path(@basket),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <%= link_to "back all baskets", baskets_path %>
