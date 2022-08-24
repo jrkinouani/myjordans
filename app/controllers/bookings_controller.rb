@@ -11,6 +11,12 @@ class BookingsController < ApplicationController
   def show
   end
 
+  def dashboard
+    @my_bookings = Booking.where(user_id: current_user.id)
+    my_baskets = Basket.where(user_id: current_user.id)
+    @incoming_bookings = Booking.where(basket_id: my_baskets.ids)
+  end
+
   # GET /bookings/new
   def new
     @booking = Booking.new

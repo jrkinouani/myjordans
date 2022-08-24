@@ -1,7 +1,7 @@
 <h2>All Jordans</h2>	
 <% @baskets.each do |basket| %>
 	<ul>
-		<li><%= link_to basket.name, basket_path(basket) %></li>
+		<li><%= link_to basket.name, basket_path(basket), data: {turbo: false} %></li>
 		<li><%= basket.price_per_day %> €/day</li>
 	</ul>
 <% end %>
