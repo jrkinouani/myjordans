@@ -1,39 +1,32 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('cover-jordan.jpg')";>
   <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
+    <h1>Boutique de baskets Jordan</h1>
+    <p>Boutique en ligne de location de baskets air Jordan </p>
 
 
    		<div class="input-group d-flex justify-content-center">
 		  <div class="col-5">
 		  	<%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-				  <%= f.input :name, input_html: {value: ""} ,placeholder:"which jordan are you looking for ?", class:"form-control"%>   
-		   </div>	
+				  <%= f.input :name, input_html: {value: ""} ,placeholder:"which jordan are you looking for ?", class:"form-control"%>
+		   </div>
 		   <div class="col-1">
 				  <%= f.submit "Search", class: "btn btn-primary" %>
 		  </div>
 			<% end %>
-			 
-			    <!--<i class="fas fa-search"></i>-->
-			 
 		</div>
   </div>
 </div>
+          <div class="container mt-5">
 
-<div class="row">
-  <% @baskets.each do |card| %>
-    <div class="col-3">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.sneakers.fr/wp-content/uploads/2022/06/xair-jordan-1-chicago-reimagined-1.jpg.pagespeed.ic.MbG6UaTFxC.jpg" alt="" class="wp-image-176136 lazyloaded" data-srcset="https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1.jpg 1140w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-600x600.jpg 600w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-380x380.jpg 380w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-768x768.jpg 768w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-485x485.jpg 485w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-120x120.jpg 120w" data-sizes="(max-width: 1140px) 100vw, 1140px" data-pagespeed-url-hash="2705102243" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" src="https://www.sneakers.fr/wp-content/uploads/2022/06/xair-jordan-1-chicago-reimagined-1.jpg.pagespeed.ic.MbG6UaTFxC.jpg" sizes="(max-width: 1140px) 100vw, 1140px" srcset="https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1.jpg 1140w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-600x600.jpg 600w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-380x380.jpg 380w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-768x768.jpg 768w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-485x485.jpg 485w, https://www.sneakers.fr/wp-content/uploads/2022/06/air-jordan-1-chicago-reimagined-1-120x120.jpg 120w)">
-        Jordan 1
-      </div>
-    </div>
-  <%end%>
-</div>
-
-  <%# <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/lunch.jpg)">
-    Lunch
-  </div>
-
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/dinner.jpg)">
-    Dinner
-  </div> %>
+            <div class="row">
+            <% @baskets.each do |basket| %>
+                <div class="card col-4 my-2">
+                    <img class="card-img-top" src="<%= basket.image %>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= link_to basket.name, basket_path(basket) %></h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            <% end %>
+            </div>
+          </div>
