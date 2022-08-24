@@ -1,4 +1,6 @@
-<%= simple_form_for(@basket, :html => { :multipart => true }) do |f| %>
+<link rel="stylesheet" type="text/css" href="_form.css">
+
+<%= simple_form_for(@basket, :html => { :multipart => true }) <%= simple_form_for @admin_artist, :class => '' do |f| %> do |f| %>
 	<%= f.input :name %>
 	<%= f.input :description %>
 	<%= f.input :size %>
@@ -6,3 +8,6 @@
 	<%= f.input :image, as: :file, :multiple => true, name: "post_attachments[image][]" %>
 	<%= f.submit %>
 <% end%>
+
+
+<%# <%= simple_form_for @admin_artist, :class => 'foobarbaz' do |f| %> %>
