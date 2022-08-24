@@ -14,6 +14,7 @@ class BasketsController < ApplicationController
 
   def create
     @basket = Basket.new(params_basket)
+    @basket.user = current_user
     if @basket.save
       redirect_to basket_path(@basket)
     else
