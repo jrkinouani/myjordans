@@ -14,25 +14,18 @@
 				  <%= f.submit "Search", class: "btn btn-primary" %>
 		  </div>
 			<% end %>-->
-			 
-			    <!--<i class="fas fa-search"></i>-->
-			 
-			<% end %>
-
 		</div>
   </div>
-</div>
-          <div class="container mt-5">
-
-            <div class="row">
-            <% @baskets.each do |basket| %>
-                <div class="card col-4 my-2">
-                    <img class="card-img-top" src="<%= basket.image %>" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= link_to basket.name, basket_path(basket) %></h5>
-                        <p class="card-text"></p>
-                    </div>
-                </div>
-            <% end %>
-            </div>
+  <div class="container mt-5">
+    <div class="row">
+     <% @baskets.each do |basket| %>
+    <div class="card col-4 my-2">
+      <img class="card-img-top" src="<%= basket.image %>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to basket.name, basket_path(basket) %></h5>
+          <p class="card-text"></p>
           </div>
+      </div>
+        <% end %>
+    </div>
+  </div>
