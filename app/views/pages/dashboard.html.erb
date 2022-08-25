@@ -12,7 +12,7 @@
 			<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
 			<% if booking.status != "accepted" %>
 		  <%= link_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch }%>
-		  <% end %>
+		 <% end %>
 
 		  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
 			<% if booking.status != "accepted" %>

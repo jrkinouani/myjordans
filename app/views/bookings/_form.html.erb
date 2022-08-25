@@ -1,5 +1,5 @@
 <%= simple_form_for([@basket, @booking]) do |f| %>
-	<%= f.input :start_date %>
-	<%= f.input :end_date %> 
-	<%= f.submit %>
+	<%= f.input :start_date,label: 'Choisissez une date de début :' %>
+	<%= f.input :end_date ,label: 'Choisissez une date de fin :' %> 
+	<%= f.submit "Validez une demande de location", class:"btn btn-info"%>
 <% end %>

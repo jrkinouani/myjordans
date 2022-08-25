@@ -1,23 +1,25 @@
-<div class="d-flex justify-content-center">
-<div class="card-trip mt-5 pb-3">
-  <img src="<%= @basket.image %>" />
-  <div class="card-trip-infos">
-    <div>
-      <h2><%= @basket.name%> - Size : <%= @basket.size%> -	Price :<%= @basket.price_per_day %>€/day</h2>
-      <p>Description : <%= @basket.description%></p>
-      <h2></h2>
-    </div>
-    <!--<img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />-->
-  </div>
-
+<div class="container">
   <div class="d-flex justify-content-center">
-    <%= link_to "edit my jordan", edit_basket_path(@basket), class: "btn btn-ghost me-3" %>
-    <%= link_to "Delete",basket_path(@basket) , class: "btn btn-danger me-3" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <%= link_to "Back all jordans", baskets_path, class: "btn btn-gradient me-3" %>
-    <%= link_to "Book this jordan", new_basket_booking_path(@basket) %>
-  </div>
+  <div class="card-trip mt-5 pb-3">
+    <img src="<%= @basket.image %>" />
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= @basket.name%> - Size : <%= @basket.size%> -	Price : <%= @basket.price_per_day %>€/day</h2>
+        <p>Description : <%= @basket.description%></p>
+        <h2></h2>
+      </div>
+      <!--<img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />-->
+    </div>
 
-  <div>
-    <%= render "bookings/form" %>
-  </div>
+    <div class="d-flex justify-content-center mb-2">
+      <%#= link_to "edit my jordan", edit_basket_path(@basket), class: "btn btn-gradient me-2" %>
+      <%#= link_to "Delete",basket_path(@basket) , class: "btn btn-danger me-3" , data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      <%= link_to "Back all jordans", baskets_path, class: "btn btn-gradient me-3" %>
+      <%= link_to "Book this jordan", new_basket_booking_path(@basket),  class: "btn btn-danger me-3"%>
+    </div>
+
+    <div>
+      <%= render "bookings/form" %>
+    </div>
+</div>
   
