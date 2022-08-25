@@ -11,5 +11,9 @@ class PagesController < ApplicationController
     else
     @books = Basket.all.order('created_at DESC')
     end
+
+    def dashboard
+      
+    end
   end
 end
