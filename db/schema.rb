@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_08_25_094911) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_08_25_101809) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,9 +61,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_094911) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "basket_id", null: false
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "total_price"
+    t.float "total_price"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
