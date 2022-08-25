@@ -2,8 +2,15 @@ class BasketsController < ApplicationController
   before_action :set_basket, only: %i[edit show destroy update]
 
   def index
-    @baskets = Basket.all
+    if params[:query].present?
+      @baskets = Basket.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @baskets = Basket.all
+    end
   end
+  # def index
+  #   @baskets = Basket.all
+  # end
 
   def show
     @booking = Booking.new
