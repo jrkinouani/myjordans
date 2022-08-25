@@ -4,7 +4,16 @@
     <h1>Boutique de baskets Jordan</h1>
     <p>Boutique en ligne de location de baskets air Jordan </p>
 
-
+  <%# <div class="input-group d-flex justify-content-center" style="width: 80%"> %>
+    <%= form_with url: baskets_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Trouve ta basket"
+      %>
+      <%= submit_tag "Recherche", class: "btn btn-secondary" %>
+    <% end %>
+  <%# </div> %>
    		<!--<div class="input-group d-flex justify-content-center">
 		  <div class="col-5">
 		  	<%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>

@@ -1,0 +1,45 @@
+<div class="container">
+	<h2>Mes Jordans</h2>
+		<!-- Ici on affiche mes baskets -->
+		<% current_user.baskets.each do |basket|%>
+
+		<% end %>
+
+		<!-- Ici on affiche les demandes pour mes baskets -->
+		<% current_user.requested_bookings.each do |booking|%>
+			<%= booking.basket.name%>
+			<%= booking.status%>
+			<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
+			<% if booking.status != "accepted" %>
+		  <%= link_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch }%>
+		  <% end %>
+
+		  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
+			<% if booking.status != "accepted" %>
+		  <%= link_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }%>
+		  <% end %>
+
+		
+
+		<% end %>
+
+		<!-- Ici on affiche les demandes que j'ai faites -->
+		<% current_user.bookings.each do |booking|%>
+
+		  <%= booking.basket.name%>
+		  <%= booking.status%>
+
+		  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà canceled -->
+		  <% if booking.status != "canceled" %>
+		  <%= link_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }%>
+		  <% end %>
+		<% end %>
+
+		<!-- Ici on affiche les baskets que j'ai déjà loué -->
+		<% current_user.rented_jordans.each do |basket|%>
+			
+		<% end %>
+</div>
+
+
+
