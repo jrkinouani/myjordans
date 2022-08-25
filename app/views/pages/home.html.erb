@@ -19,7 +19,7 @@
   <div class="container mt-5">
     <div class="row">
      <% @baskets.each do |basket| %>
-    <div class="card col-4 my-2">
+    <div class="card col-4 my-2 card_category">
       <img class="card-img-top" src="<%= basket.image %>" alt="Card image cap">
         <div class="card-body" data-turbo="false">
           <h5 class="card-title"><%= link_to basket.name, basket_path(basket)  %></h5>
