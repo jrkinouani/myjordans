@@ -1,12 +1,13 @@
 <link rel="stylesheet" type="text/css" href="_form.css">
 
-<%= simple_form_for @basket do |f| %>
-	<%= f.input :name %>
-	<%= f.input :description %>
-	<%= f.input :size %>
-	<%= f.input :price_per_day %>
-	<%= f.input :image %>
-    <%# <%= f.association :user %> 
-	<%= f.submit %>
-<% end %>
-<%# <%= simple_form_for @admin_artist, :class => 'foobarbaz' do |f| %> 
+<div class ="form_style">
+  <%= simple_form_for @basket do |f| %>
+    <%= f.input :name,label: 'Nom de la paire ', placeholder: 'Ex: Jordan 3' %>
+    <%= f.input :description,label: 'Description',  placeholder: 'Une description de ta paire !' %>
+    <%= f.input :size, label: 'Taille', placeholder: 'La taille de cette paire' %>
+    <%= f.input :price_per_day,label: 'Prix par jour de location', placeholder: "Ton prix par jour c'est ici !" %>
+    <%= f.input :image, label: 'Ta photo',placeholder: 'Envoie une photo' %>
+    <%= f.submit class:"button_style"%>
+    <%# <i class="fa-solid fa-basketball"></i> %>
+  <% end %>
+</div>
