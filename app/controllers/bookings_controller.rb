@@ -1,78 +1,51 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show edit update destroy]
-  skip_before_action :verify_authenticity_token
 
-  # GET /bookings or /bookings.json
-  def index
-    @bookings = Booking.all
-  end
+	def new
+		@basket = Basket.find(params[:basket_id])
+		@booking = Booking.new
+	end
 
-  # GET /bookings/1 or /bookings/1.json
-  def show
-  end
+	def create
+		@basket = Basket.find(params[:basket_id])
+		@booking = Booking.new(bookings_params)
+		@booking.basket = @basket
+		@booking.user = current_user
+		@booking.status = "pending"
+		if @booking.save
+			redirect_to dashboard_path
+		else
+			render :new, status: :unprocessable_entity
+		end
+	end
 
-  def dashboard
-    @my_bookings = Booking.where(user_id: current_user.id)
-    my_baskets = Basket.where(user_id: current_user.id)
-    @incoming_bookings = Booking.where(basket_id: my_baskets.ids)
-  end
+	def accept
+		@booking = Booking.find(params[:id])
+		@booking.update(status: "accepted")
+		if @booking.save 
+			redirect_to dashboard_path
+		end
+	end
 
-  # GET /bookings/new
-  def new
-    @booking = Booking.new
-  end
+	def decline
+		@booking = Booking.find(params[:id])
+		@booking.update(status: "declined")
+		if @booking.save 
+			redirect_to dashboard_path
+		end
+	end
 
-  # GET /bookings/1/edit
-  def edit
-  end
+	def cancel
+		@booking = Booking.find(params[:id])
+		@booking.update(status: "canceled")
+		if @booking.save 
+			redirect_to dashboard_path
+		end
+	end
 
-  # POST /bookings or /bookings.json
-  def create
-    @booking = Booking.new(booking_params)
 
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	private
 
-  # PATCH/PUT /bookings/1 or /bookings/1.json
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /bookings/1 or /bookings/1.json
-  def destroy
-    @booking.destroy
-
-    respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_booking
-    @booking = Booking.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def booking_params
-    params.require(:booking).permit(:user_id, :basket_id, :start_date, :end_date, :total_price, :status)
-  end
+	def bookings_params
+		params.require(:booking).permit(:start_date, :end_date)
+	end
 end
