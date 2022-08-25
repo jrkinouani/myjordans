@@ -1,45 +1,83 @@
 <div class="container">
-	<h2>Mes Jordans</h2>
-		<!-- Ici on affiche mes baskets -->
-		<% current_user.baskets.each do |basket|%>
+  <div class="main">
+	<div class="navbar navbar-expand-sm navbar-light navbar-lewagon-dashboard">
+     <div class="container-fluid">
+		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+		  <li class="nav-item " role="presentation">
+		    <button class="nav-link active" id="pills-dasb-tab" data-bs-toggle="pill" data-bs-target="#pills-dash" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Mes jordans</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Mes locations</button>
+		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+		  </li>
+		</ul>
+	   </div>
+	 </div>
+	 <div class="tab-content" id="pills-tabContent">
+	   <div class="tab-pane fade show active" id="pills-dash" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+	  	   <h2>Mes Jordans</h2>
+			<!-- Ici on affiche mes baskets -->
+			<div class="row dashboard mb-3">
+				<% current_user.baskets.each do |basket|%>
+				<div class="flash">
+					<div class="col-3">
+						<%= basket.name %>
+					</div>
+					<div class="col-4 d-flex justify-content-center">
+						<img class="card-img-top dashboard" src="<%= basket.image %>" alt="Card image cap">
+					</div>
+					<div class="col-3">
+						<h5>Taille : <%= basket.size %></h5>
+					</div>
+					<div class="col-3">
+						<h5><%= basket.price_per_day %> €/jour</h5>
+					</div>
+				</div>
+			   <% end %>
+		    </div>
+        </div>
+		<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+		  	
+		   <h3>Mes locations :</h3>
+				<!-- Ici on affiche les demandes pour mes baskets -->
+				<% current_user.requested_bookings.each do |booking|%>
+					<%= booking.basket.name%>
+					<%= booking.status%>
+					<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
+					<% if booking.status != "accepted" %>
+				  <%= link_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch }%>
+				 <% end %>
 
-		<% end %>
+				  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
+					<% if booking.status != "accepted" %>
+				  <%= link_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }%>
+				  <% end %>
 
-		<!-- Ici on affiche les demandes pour mes baskets -->
-		<% current_user.requested_bookings.each do |booking|%>
-			<%= booking.basket.name%>
-			<%= booking.status%>
-			<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
-			<% if booking.status != "accepted" %>
-		  <%= link_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch }%>
-		 <% end %>
+				
 
-		  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
-			<% if booking.status != "accepted" %>
-		  <%= link_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }%>
-		  <% end %>
+				<% end %>
 
-		
+				<!-- Ici on affiche les demandes que j'ai faites -->
+				<% current_user.bookings.each do |booking|%>
 
-		<% end %>
+				  <%= booking.basket.name%>
+				  <%= booking.status%>
 
-		<!-- Ici on affiche les demandes que j'ai faites -->
-		<% current_user.bookings.each do |booking|%>
+				  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà canceled -->
+				  <% if booking.status != "canceled" %>
+				  <%= link_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }%>
+				  <% end %>
+				<% end %>
 
-		  <%= booking.basket.name%>
-		  <%= booking.status%>
-
-		  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà canceled -->
-		  <% if booking.status != "canceled" %>
-		  <%= link_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }%>
-		  <% end %>
-		<% end %>
-
-		<!-- Ici on affiche les baskets que j'ai déjà loué -->
-		<% current_user.rented_jordans.each do |basket|%>
-			
-		<% end %>
+				<!-- Ici on affiche les baskets que j'ai déjà loué -->
+				<% current_user.rented_jordans.each do |basket|%>
+					
+				<% end %>	
+		     </div>
+         </div>
+     </div>
 </div>
-
 
 
