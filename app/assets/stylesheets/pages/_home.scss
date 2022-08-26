@@ -1,10 +1,33 @@
 // Specific CSS for your home-page
 .navbar-brand img {
+
   content:url(https://www.freepnglogos.com/uploads/michael-jordan-logo-red-png-4.png);
 }
 
 .card-title a {
-  color: #8a4c14;
+  color: #c0946e;
   text-decoration: none;
+  font-size: 16px;
 }
 
+.card-title {
+  color: #c0946e;
+  font-size: 16px;
+}
+
+.card_category {
+  justify-content: space-around;
+  border: 1px solid rgb(220, 191, 147);
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 0px;
+  margin: 10px;
+  width: 230px;
+  height: 280px;
+}
+
+.card-img-top {
+  object-fit: content;
+  max-width:180px ;
+  margin: 0 auto;
+}
