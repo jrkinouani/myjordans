@@ -1,7 +1,17 @@
-<h2>All Jordans</h2>	
-<% @baskets.each do |basket| %>
-	<ul>
-		<li><%= link_to basket.name, basket_path(basket), data: {turbo: false} %></li>
-		<li><%= basket.price_per_day %> €/day</li>
-	</ul>
-<% end %>
+<div class="container">
+    <h3 class="text-center mt-3">
+      All Jordans
+    </h3>
+    <div class="row justify-content-center">
+    <% @baskets.each do |basket| %>
+     <div class="card col-4 my-2 card_category">
+      <img class="card-img-top" src="<%= basket.image %>" alt="Card image cap">
+        <div class="card-body" data-turbo="false">
+          <h5 class="card-title"><%= link_to basket.name, basket_path(basket)  %></h5>
+          <h5 class="card-title"><%= basket.price_per_day  %> € / jour </h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
