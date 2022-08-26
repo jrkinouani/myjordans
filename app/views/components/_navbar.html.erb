@@ -3,40 +3,38 @@
       <%= link_to "#", class: "navbar-brand" do %>
         <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
       <% end %>
-
+        <h1><strong>MES JORDANS</h1></strong>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
-          <%# if user_signed_in? %>
-          <%# <li class="nav-item active">> %>
-           <%# <h2> hello  <%= current_user.first_name %>  </h2>
-          <%# </li> %>
-          <li class="nav-item active">
-              <%= link_to "add new basket", new_basket_path, class: "nav-link" %>
+          <% if user_signed_in? %>
+            <li class="nav-item active" >
+              <%# <h2>Hello <%= current_user.first_name %> </h2>
             </li>
-            <li><%= link_to "all Jordans", baskets_path, class: "nav-link" %></li>
-            <li class="nav-item active">
-              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+          <li class="nav-item active">
+              <%= link_to "Ajouter une Basket", new_basket_path, class: "nav-link" %>
+            </li>
+            <li>
+             <%= link_to "Toutes les Jordans", baskets_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+              <%= link_to "se deconnecter", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
             </li>
-            <%# <li class="nav-item dropdown"> %>
-              <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-              <%# <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> %>
-                <%# <%= link_to "Action", "#", class: "dropdown-item" %>
-                <%# <%= link_to "Another action", "#", class: "dropdown-item" %>
-                <%# <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
-              <%# </div> %>
-            <%# </li> %>
-          <%# else %>
+          <% else %>
+             <li>
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            </li>
+
+            <li class="nav-item active">
+              <%= link_to "s'inscrire", new_user_registration_path, class: "nav-link" %>
+            </li>
             <!--li class="nav-item"-->
-              <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
             <!--/li-->
-          <%# end %>
+          <% end %>
         </ul>
       </div>
     </div>
