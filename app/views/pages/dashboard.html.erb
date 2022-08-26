@@ -12,12 +12,14 @@
 		  <li class="nav-item" role="presentation">
 		    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Mes demandes</button>
 		  </li>
+		  <li class="nav-item" role="presentation">
+		    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-last" type="button" role="tab" aria-controls="pills-last" aria-selected="false">Mes Baskets louées</button>
+		  </li>
 		</ul>
 	   </div>
 	 </div>
 	 <div class="tab-content" id="pills-tabContent">
 	   <div class="tab-pane fade show active" id="pills-dash" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-	  	   <h2>Mes Jordans</h2>
 			<!-- Ici on affiche mes baskets -->
 			<div class="row dashboard mb-3">
 				<% current_user.baskets.each do |basket|%>
@@ -40,7 +42,6 @@
         </div>
 		<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 		  	
-		   <h3>Mes locations :</h3>
 				<!-- Ici on affiche les demandes pour mes baskets -->
 				<div class="row dashboard mb-3">
 					<% current_user.requested_bookings.each do |booking|%>
@@ -54,17 +55,16 @@
 						<div class="col-2">
 						<%= booking.status%>
 						<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
-							<button class="btn btn-primary"></button>
 						</div>
 						<div class="col-2">
 						<% if booking.status != "accepted" %>
-						  <%= button_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch }%>
+						  <%= button_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch } , class:"btn btn-success"%>
 						 <% end %>
 						</div>
 						<div class="col-2">
 					  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
 						<% if booking.status != "accepted" %>
-					  <%= button_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }%>
+					  <%= button_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }, class:"btn btn-primary"%>
 					  <% end %>
 					</div>
 					</div>
@@ -72,7 +72,6 @@
 			    </div>
 		     </div>
 		     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-			    <h2>Mes demandes</h2>
 			    <div class="row dashboard mb-3">
 				<!-- Ici on affiche les demandes que j'ai faites -->
 				<% current_user.bookings.each do |booking|%>
@@ -87,12 +86,12 @@
 						 <img class="card-img-top dashboard" src="<%= booking.basket.image %>" alt="Card image cap">
 					</div>
 				   	<div class="col-2">
-					  <%= booking.status%>
+					  <%= booking.status %>
 				   	</div>
 				   	<div class="col-3">
 					  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà canceled -->
 					  <% if booking.status != "canceled" %>
-					  <%= link_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }%>
+					  <%= button_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }, class:"btn btn-danger"%>
 					  <% end %>
 					</div>
 				   </div>
@@ -100,10 +99,24 @@
 				  </div> 
 				</div>
               </div>
+               <div class="tab-pane fade" id="pills-last" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+			     <div class="row dashboard mb-3">
 				<!-- Ici on affiche les baskets que j'ai déjà loué -->
-				<%# current_user.rented_jordans.each do |basket|%>
-					
-				<%# end %>
+				<% current_user.rented_jordans.each do |basket|%>
+					<div class="flash">
+						<div class="col-2">
+						  <%= basket.name%>
+						</div>
+						<div class="col-3 d-flex justify-content-center">
+						 <img class="card-img-top dashboard" src="<%= basket.image %>" alt="Card image cap">
+					    </div>
+						<div class="col-3">
+						<h4>Loué a : <%= basket.user.first_name %></h4>
+						</div>
+					</div>
+				<% end %>
+			     </div>
+			    </div>
 			</div>
      </div>
 </div>
