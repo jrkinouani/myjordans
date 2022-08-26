@@ -57,14 +57,14 @@
 						<!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà accepted -->
 						</div>
 						<div class="col-2">
-						<% if booking.status != "accepted" %>
-						  <%= button_to "Accept this reservation", accept_booking_path(booking), data: { turbo_method: :patch } , class:"btn btn-success"%>
+						<% if booking.status != "acceptée" %>
+						  <%= button_to "Accepter la réservation", accept_booking_path(booking), data: { turbo_method: :post } , class:"btn btn-success"%>
 						 <% end %>
 						</div>
 						<div class="col-2">
 					  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà declined -->
-						<% if booking.status != "accepted" %>
-					  <%= button_to "Decline this reservation", decline_booking_path(booking), data: { turbo_method: :patch }, class:"btn btn-primary"%>
+						<% if booking.status != "acceptée" %>
+					  <%= button_to "Décliner la réservation", decline_booking_path(booking), data: { turbo_method: :post }, class:"btn btn-primary"%>
 					  <% end %>
 					</div>
 					</div>
@@ -77,8 +77,8 @@
 				<% current_user.bookings.each do |booking|%>
 				   <div class="flash">
 				   	<div class="col-2">
-							<%= booking.user.first_name %>
-						</div>
+					  <h6>Demandé par <%= booking.user.first_name %></h6>
+					</div>
 				   	<div class="col-2">	
 					  <%= booking.basket.name%>
 				   	</div>
@@ -89,11 +89,14 @@
 					  <%= booking.status %>
 				   	</div>
 				   	<div class="col-3">
+				   		<%#= booking.start_date %>
+						<%#= booking.end_date %>
 					  <!-- Ici on affiche le bouton seulement si la reservation n'est pas déjà canceled -->
-					  <% if booking.status != "canceled" %>
-					  <%= button_to "Cancel this reservation", cancel_booking_path(booking), data: { turbo_method: :patch }, class:"btn btn-danger"%>
+					  <% if booking.status != "annulée" %>
+					  <%#= button_to "Réponse en réservation", cancel_booking_path(booking), data: { turbo_method: :post }, class:"btn btn-danger"%>
 					  <% end %>
 					</div>
+
 				   </div>
 				<% end %>
 				  </div> 
@@ -121,4 +124,4 @@
      </div>
 </div>
 
-
+<%= console %>
