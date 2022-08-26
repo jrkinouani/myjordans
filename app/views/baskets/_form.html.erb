@@ -6,7 +6,10 @@
     <%= f.input :description,label: 'Description',  placeholder: 'Une description de ta paire !' %>
     <%= f.input :size, label: 'Taille', placeholder: 'La taille de cette paire' %>
     <%= f.input :price_per_day,label: 'Prix par jour de location', placeholder: "Ton prix par jour c'est ici !" %>
-    <%= f.input :image, label: 'Ta photo',placeholder: 'Envoie une photo' %>
+    <%# <%= f.input :image, label: 'Ta photo', placeholder: 'Envoie une photo' %> 
+    <div class="mb-3 string optional basket_photo">
+    <label class="form-label string optional" for="basket_price_per_day">Ta photo</label>
+    <input class="form-control string optional" placeholder="Envoie une photo" type="text" name="image"></div>
     <%= f.submit class:"button_style"%>
     <%# <i class="fa-solid fa-basketball"></i> %>
   <% end %>

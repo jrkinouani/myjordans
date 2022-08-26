@@ -23,7 +23,9 @@ class BasketsController < ApplicationController
   def create
     @basket = Basket.new(params_basket)
     @basket.user = current_user
+    @basket.image = params[:image]
     if @basket.save
+
       redirect_to basket_path(@basket)
     else
       render :new, status: :unprocessable_entity
@@ -51,8 +53,6 @@ class BasketsController < ApplicationController
 
   def params_basket
     params.require(:basket)
-          .permit(:name, :size, :description, :price_per_day, post_attachments_attributes: [:id, :post_id, {
-                    image: []
-                  }])
+          .permit(:name, :size, :description, :price_per_day, :image)
   end
 end
