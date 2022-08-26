@@ -5,7 +5,8 @@
     <p>Boutique en ligne de location de baskets air Jordan </p>
 
   <%# <div class="input-group d-flex justify-content-center" style="width: 80%"> %>
-    <%= form_with url: baskets_path, method: :get, class: "d-flex" do %>
+  <div class="">
+    <%= form_with url: baskets_path, method: :get, class: "d-flex search-bar" do %>
       <%= text_field_tag :query,
         params[:query],
         class: "form-control",
@@ -13,6 +14,7 @@
       %>
       <%= submit_tag "Recherche", class: "btn btn-secondary" %>
     <% end %>
+  </div>
 
 		</div>
   </div>
