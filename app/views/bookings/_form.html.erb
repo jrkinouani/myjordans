@@ -1,5 +1,14 @@
 <%= simple_form_for([@basket, @booking]) do |f| %>
-	<%= f.input :start_date,label: 'Choisissez une date de début :' %>
-	<%= f.input :end_date ,label: 'Choisissez une date de fin :' %> 
+	<%= f.input :start_date, as: :string, label: 'Choisissez une date de début :', :input_html => { :class => 'datepicker' } %>
+	<%= f.input :end_date, as: :string, label: 'Choisissez une date de fin :', :input_html => { :class => 'datepicker' } %> 
 	<%= f.submit "Validez une demande de location", class:"btn btn-info"%>
 <% end %>
+<script>
+document.addEventListener("turbo:load", () => {
+  flatpickr(".datepicker", {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+  });
+});
+</script>
