@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-  STATUS = %w(pending accepted declined canceled)
+  STATUS = %w(attente acceptée declinée annulée)
 
   belongs_to :user
   belongs_to :basket
