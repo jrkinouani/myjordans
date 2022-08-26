@@ -46,9 +46,6 @@
 					<% current_user.requested_bookings.each do |booking|%>
 					<div class="flash">
 						<div class="col-2">
-							
-						</div>
-						<div class="col-2">
 						<%= booking.basket.name%>
 						</div>
 						<div class="col-2 d-flex justify-content-center">
@@ -80,6 +77,9 @@
 				<!-- Ici on affiche les demandes que j'ai faites -->
 				<% current_user.bookings.each do |booking|%>
 				   <div class="flash">
+				   	<div class="col-2">
+							<%= booking.user.first_name %>
+						</div>
 				   	<div class="col-2">	
 					  <%= booking.basket.name%>
 				   	</div>
