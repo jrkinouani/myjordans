@@ -1,9 +1,10 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
     <div class="container-fluid">
 
-        <%= link_to (image_tag "https://www.freepnglogos.com/uploads/michael-jordan-logo-red-png-4.png",class:"image_logo"), root_path %>
-        <h1>MY JORDANS</h1>
-
+      <%= link_to "#", class: "navbar-brand" do %>
+        <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+      <% end %>
+        <h1><strong>MES JORDANS</h1></strong>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,7 +13,10 @@
         <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
             <li class="nav-item active" >
-              <h2>Hello <%= current_user.first_name %> </h2>
+
+              <%# <h2>Hello <%= current_user.first_name %> </h2>
+
+
             </li>
           <li class="nav-item active">
               <%= link_to "Ajouter une Basket", new_basket_path, class: "nav-link" %>
