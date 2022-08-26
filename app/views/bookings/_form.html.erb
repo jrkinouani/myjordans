@@ -1,7 +1,7 @@
 <%= simple_form_for([@basket, @booking]) do |f| %>
-	<%= f.input :start_date, as: :string, label: 'Choisissez une date de début :', :input_html => { :class => 'datepicker' } %>
-	<%= f.input :end_date, as: :string, label: 'Choisissez une date de fin :', :input_html => { :class => 'datepicker' } %> 
-	<%= f.submit "Validez une demande de location", class:"btn btn-info"%>
+	<%= f.input :start_date, as: :string, label: 'Choisissez une date de début :', :input_html => { :class => 'datepicker', :placeholder => "Cliquez ici pour choisir" } %>
+	<%= f.input :end_date, as: :string, label: 'Choisissez une date de fin :', :input_html => { :class => 'datepicker', :placeholder => "Cliquez ici pour choisir"  } %> 
+	<div class="d-flex"><%= f.submit "Validez une demande de location", class:"btn btn-info bookings-submit"%></div>
 <% end %>
 <script>
 document.addEventListener("turbo:load", () => {
@@ -12,3 +12,8 @@ document.addEventListener("turbo:load", () => {
   });
 });
 </script>
+<style>
+.bookings-submit {
+	margin: 0 auto;
+}
+</style>
